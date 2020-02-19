@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'product-front';
+  showSideBar = true
+
+  onShowSideBarChange(showValue) {
+    this.showSideBar = showValue
+  }
 }
