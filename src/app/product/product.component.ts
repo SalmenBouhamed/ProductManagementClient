@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProductsService } from '../service/product.service';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,7 @@ export class ProductComponent implements OnInit {
   productForm: FormGroup
   constructor(
     private formBuilder: FormBuilder,
-    //private productService: ProductService
+    private productService: ProductsService
   ) {
     this.productForm = this.formBuilder.group({
       ref: ['', Validators.required],
@@ -23,6 +24,15 @@ export class ProductComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loadProduct()
+  }
+
+  loadProduct() {
+    this.productService.getProducts().subscribe(data => {
+      this.products = data
+    }, err => {
+      console.log('Error : ', err)
+    })
   }
 
 }
