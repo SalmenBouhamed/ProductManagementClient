@@ -21,10 +21,11 @@ export class ProductsService {
     }
 
     updateProduct(product: Product): Observable<any> {
+        console.log(product)
         return this.http.put(API_URLS.PRODUCTS_URL, product)
     }
 
-    deleteProduct(ref: String): Observable<any> {
-        return this.http.delete(`${API_URLS.PRODUCTS_URL}/${ref}`)
+    deleteProduct(id: number): Observable<any> {
+        return this.http.delete(`${API_URLS.PRODUCTS_URL}/${id}`)
     }
 }
